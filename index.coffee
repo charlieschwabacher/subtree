@@ -5,6 +5,7 @@ module.exports =
 
   create: (inputData, onChange, historySize = 100) ->
     data = inputData
+    batched = false
     undos = []
     redos = []
 
@@ -42,6 +43,11 @@ module.exports =
       bind: (path, pre) ->
         (v, silent) => @set path, (if pre then pre(v) else v), silent
 
+      batched: (cb) ->
+        batched = true
+        cb()
+        batched = false
+        update data, true
 
     undo = ->
       return unless undos.length > 0
@@ -58,12 +64,12 @@ module.exports =
       onChange new Cursor(), undo, redo
 
     update = (newData, silent = false) ->
-      unless silent
+      unless silent or batched
         undos.push data
         undos.shift() if undos.length > historySize
 
       data = newData
-      onChange new Cursor(), undo, redo
+      onChange new Cursor(), undo, redo unless batched
 
     # perform callback one time to start
     onChange new Cursor(), undo, redo
