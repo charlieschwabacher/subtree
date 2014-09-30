@@ -83,11 +83,14 @@
           })(this);
         };
 
-        Cursor.prototype.batched = function(cb) {
+        Cursor.prototype.batched = function(cb, silent) {
+          if (silent == null) {
+            silent = false;
+          }
           batched = true;
           cb();
           batched = false;
-          return update(data, true);
+          return update(data, silent);
         };
 
         return Cursor;

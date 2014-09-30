@@ -43,11 +43,11 @@ module.exports =
       bind: (path, pre) ->
         (v, silent) => @set path, (if pre then pre(v) else v), silent
 
-      batched: (cb) ->
+      batched: (cb, silent = false) ->
         batched = true
         cb()
         batched = false
-        update data, true
+        update data, silent
 
     undo = ->
       return unless undos.length > 0
