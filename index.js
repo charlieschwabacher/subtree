@@ -8,11 +8,12 @@
 
   module.exports = {
     create: function(inputData, onChange, historySize) {
-      var Cursor, data, redo, redos, undo, undos, update;
+      var Cursor, batched, data, redo, redos, undo, undos, update;
       if (historySize == null) {
         historySize = 100;
       }
       data = inputData;
+      batched = false;
       undos = [];
       redos = [];
       Cursor = (function() {
@@ -82,6 +83,13 @@
           })(this);
         };
 
+        Cursor.prototype.batched = function(cb) {
+          batched = true;
+          cb();
+          batched = false;
+          return update(data, true);
+        };
+
         return Cursor;
 
       })();
@@ -111,14 +119,16 @@
         if (silent == null) {
           silent = false;
         }
-        if (!silent) {
+        if (!(silent || batched)) {
           undos.push(data);
           if (undos.length > historySize) {
             undos.shift();
           }
         }
         data = newData;
-        return onChange(new Cursor(), undo, redo);
+        if (!batched) {
+          return onChange(new Cursor(), undo, redo);
+        }
       };
       return onChange(new Cursor(), undo, redo);
     }
