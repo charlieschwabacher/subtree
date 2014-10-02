@@ -26,8 +26,8 @@ their path or below it.
 - `get(path)` - returns the value at path
 - `set(path, value[, silent])` - replaces the value at path with a new value.  if the optional *silent* argument is included, the changes will not be stored in the undo history
 - `merge(data[, silent])` - replaces the value at path with a new object created by deeply merging the current value and the provided argument
-- `bind(path = [], pre = (v) -> v, silent = false)` - returns a setter function for the provided path.  If the optional *pre* argument is included, it will be composed with the setter to preproccess values.
-- `batched(cb, silent = false)` - immediately runs a passed *cb* function.  Updates made inside the passed callback will be batched and cause the onChange callback to run only once.
+- `bind(path[, pre[, silent]])` - returns a setter function for the provided path.  If the optional *pre* argument is included, it will be composed with the setter to preproccess values.
+- `batched(cb[, silent])` - immediately runs a passed *cb* function.  Updates made inside the passed callback will be batched and cause the onChange callback to run only once.
 
 Path arguments are flexible - they can be omitted to reference the value the cursor references directly,
 they can be be a single string to reference a property of an object the cursor references, or an array of
