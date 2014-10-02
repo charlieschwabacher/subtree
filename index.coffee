@@ -1,12 +1,11 @@
-deepMerge = require './deep_merge'
-deepFreeze = require './deep_freeze'
-freeze = Object.freeze
+merge = require './deep_merge'
+freeze = require './deep_freeze'
 isArray = Array.isArray
 
 module.exports = 
 
   create: (inputData, onChange, historySize = 100) ->
-    data = deepFreeze inputData
+    data = freeze inputData
     batched = false
     undos = []
     redos = []
@@ -37,13 +36,13 @@ module.exports =
           freeze target
           target = target[key]
 
-        deepFreeze value if value instanceof Object
+        freeze value if value instanceof Object
         target[fullPath.slice -1] = value
 
         update newData, silent
 
       merge: (data, silent) ->
-        @set [], deepMerge(@get(), deepFreeze data), silent
+        @set [], merge(@get(), freeze data), silent
 
       bind: (path, pre) ->
         (v, silent) => @set path, (if pre then pre(v) else v), silent
