@@ -8,7 +8,7 @@
     _ref = Object.getOwnPropertyNames(o);
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       prop = _ref[_i];
-      if (o.hasOwnProperty(prop) && (o[prop] != null) && o instanceof Object && !Object.isFrozen(o[prop])) {
+      if (o.hasOwnProperty(prop) && (o[prop] != null) && (typeof o[prop] === 'object' || typeof o[prop] === 'function') && !Object.isFrozen(o[prop])) {
         deepFreeze(o[prop]);
       }
     }
