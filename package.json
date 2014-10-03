@@ -6,7 +6,8 @@
   "author": "Charlie Schwabacher",
   "license": "ISC",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/charlieschwabacher/cursor.git"
-  }
+    "type": "git",
+    "url": "https://github.com/charlieschwabacher/cursor.git"
+  },
+  "dependencies": {}
 }
