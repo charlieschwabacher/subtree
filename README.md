@@ -95,7 +95,7 @@ songCursor = playlistCursor.cursor 0
 # updating data
 
 root.get('user').playcount = 6
-# does not modify playcount because object has been frozen
+# THIS DOES NOTHING - playcount can't be modified because object has been frozen
 
 root.set ['user', 'playcount'], 6
 # sets user playcount to six
