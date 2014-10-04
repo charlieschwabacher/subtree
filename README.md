@@ -108,8 +108,9 @@ callback 'Sam Smith'
 # sets user name to 'SAM SMITH'
 
 root.batched ->
+  songs = root.get ['playlist', 'songs']
+  newSong = name: 'Party All The Time', artist: 'Eddie Murphy'
+  root.set ['playlist', 'songs'], songs.concat [newSong]
   root.set ['playlist', 'updatedAt'], new Date
-  songs = root.get ['playlist', 'songs'].concat [name: 'Party All The Time', artist: 'Eddie Murphy']
-  root.set ['playlist', 'songs'], songs
 # adds an updatedAt property and a new song to playlist in a single update
 ```
