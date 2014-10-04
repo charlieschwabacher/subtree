@@ -13,7 +13,7 @@ create a cursor by passing some initial data and an onChange callback
 Cursor.create initialData, (rootCursor) ->
 ```
 
-The initialData object passed in to the cursor will be frozen.  The `onChange` callback will be called one time initially and on each change to the data, passing a root cursor object.  This callback is a great place to do something like render a React component.
+The initialData object passed in to the cursor will be frozen.  The `onChange` callback will be called one time initially and on each change to the data, passing a root cursor object.  This callback is a great place to do something like render React components.
 
 
 using cursors
