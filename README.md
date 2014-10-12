@@ -13,7 +13,7 @@ create a cursor by passing some initial data and an onChange callback
 Cursor.create initialData, (rootCursor) ->
 ```
 
-The initialData object passed in to the cursor will be frozen.  The `onChange` callback will be called one time initially and on each change to the data, passing a root cursor object.  This callback is a great place to do something like render a React component.
+The initialData object passed in to the cursor will be frozen.  The `onChange` callback will be called one time initially and on each change to the data, passing a root cursor object.  This callback is a great place to do something like render React components.
 
 
 using cursors
@@ -108,8 +108,9 @@ callback 'Sam Smith'
 # sets user name to 'SAM SMITH'
 
 root.batched ->
+  songs = root.get ['playlist', 'songs']
+  newSong = name: 'Party All The Time', artist: 'Eddie Murphy'
+  root.set ['playlist', 'songs'], songs.concat [newSong]
   root.set ['playlist', 'updatedAt'], new Date
-  songs = root.get ['playlist', 'songs'].concat [name: 'Party All The Time', artist: 'Eddie Murphy']
-  root.set ['playlist', 'songs'], songs
 # adds an updatedAt property and a new song to playlist in a single update
 ```
