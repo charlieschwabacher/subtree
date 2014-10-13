@@ -5,21 +5,21 @@ Cursor is a library for reading and updating data in an immutable data
 structure.  It works great with, but does not require, React.js.
 
 
-Cursor is designed:
+Cursor is designed w/ the following goals in mind:
 
-to provide a simple, familiar, human friendly api
+- to provide a **simple, familiar, human friendly api**
 
-not to be coupled to React - data can easily be shared between react and other
-parts of your app, or between multiple top level react components in different
-parts of a page.
+- **not to be coupled to React** - data can easily be shared between react and
+other parts of an app, or between multiple top level react components in
+different parts of a page.
 
-to be 'pure render' friendly - cursor objects are cached, making it easy to
-avoid unncessary rendering.
+- to be **'pure render' friendly** - cursor objects are cached, making it easy
+to avoid unncessary rendering.
 
-to enforce immutability - cursor uses Object.freeze on immutible data to
-prevent unexpected changes.
+- to **enforce immutability** - cursor uses Object.freeze on immutible data to
+prevent bugs caused by unexpected changes.
 
-to provide built in undo / redo functionality w/ fine control over which
+- to provide **built in undo / redo** functionality w/ fine control over which
 changes are stored in the history.
 
 
