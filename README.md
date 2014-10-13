@@ -2,8 +2,7 @@ cursor
 ======
 
 Cursor is a library for reading from and updating an immutable data structure.
-
-Cursor is designed w/ the following goals in mind:
+It is designed w/ the following goals in mind:
 
 - to provide a **simple, familiar, human friendly api**
 
