@@ -63,7 +63,7 @@ module.exports =
           delete target[key]
         , silent
 
-      merge: (data, silent) ->
+      merge: (data, silent = false) ->
         cache.clearObject data
         update deepMerge(@get(), deepFreeze data), silent
 
