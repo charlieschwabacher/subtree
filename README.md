@@ -1,7 +1,24 @@
 cursor
 ======
 
-cursor provides a way to read and update data using deep references and an immutable data structure
+Cursor provides a friendly api for reading and updating data using an immutable
+data structure.  It works great with, but does not require, React.js.
+
+Although some very immutable data libraries for javascript already exist, none
+provided the complete set of features I needed, so I ended up writing this one.
+
+Cursor:
+- provieds a simple, familiar, human friendly api
+- is not coupled to react - data can easily be shared between react and other
+parts of your app, or between multiple top level react components in different
+parts of a page.
+- is 'pure render' friendly - cursor objects are cached, making it easy to avoid
+unncessary rendering.
+- enforces immutability - cursor uses Object.freeze on immutablilty data to
+avoid hard bugs.
+- has built in undo / redo functionality w/ fine control over which changes are
+stored in the history.
+
 
 
 creating a cursor
@@ -13,30 +30,45 @@ create a cursor by passing some initial data and an onChange callback
 Cursor.create initialData, (rootCursor) ->
 ```
 
-The initialData object passed in to the cursor will be frozen.  The `onChange` callback will be called one time initially and on each change to the data, passing a root cursor object.  This callback is a great place to do something like render React components.
+The initialData object passed in to the cursor will be frozen.  The `onChange`
+callback will be called one time initially and on each change to the data,
+passing a root cursor object.  This callback is a great place to do something
+like render React components.
+
 
 
 using cursors
 -------------
 
-Cursor objects store a path through the root data object, and expose methods to read or update data at
-their path or below it.
+Cursor objects store a path through the root data object, and expose methods to
+read or update data at their path or below it.
 
-- `cursor(path)` - creates and returns a new subcursor appending the passed path to the current path
+- `cursor(path)` - creates and returns a new subcursor appending the passed path
+to the current path. References to cursors are cached so that two cursors w/
+identical path will be referentially equal as long as thir target object is
+unchanged.
 
 - `get(path)` - returns the value at path
 
-- `set(path, value)` - replaces the value at path with a new value.  Objects passed to set are frozen.
+- `set(path, value)` - replaces the value at path with a new value.  Objects
+passed to set are frozen.
 
-- `merge(data)` - replaces the value at path with a new object created by deeply merging the current value and the provided argument
+- `merge(data)` - replaces the value at path with a new object created by deeply
+merging the current value and the provided argument
 
-- `bind(path[, pre])` - returns a setter function for the provided path.  If the optional `pre` argument is included, it will be composed with the setter to preproccess values.
+- `bind(path[, pre])` - returns a setter function for the provided path.  If the
+optional `pre` argument is included, it will be composed with the setter to
+preproccess values.
 
-- `batched(cb[, silent])` - immediately runs a passed callback function.  Updates made inside the function will be batched and cause the onChange callback to run only once.
+- `batched(cb)` - immediately runs a passed callback function. Updates made
+inside the function will be batched and cause the onChange callback to run only
+once.
 
-Path arguments are flexible - they can be omitted to reference the value the cursor references directly,
-they can be be a single string to reference a property of an object the cursor references, or an array of
-strings to reach deep inside nested objects.
+Path arguments are flexible - they can be omitted to reference the value the
+cursor references directly, they can be be a single string to reference a
+property of an object the cursor references, or an array of strings to reach
+deep inside nested objects.
+
 
 
 an example
@@ -62,10 +94,10 @@ initialData =
         artist: 'Jermaine Stewart'
       }
     ]
-  
+
 Cursor.create initialData, (root) ->
   React.renderComponent <Playlist data={root.cursor 'playlist'}/>, document.body
-```  
+```
 
 
 ```coffeescript
@@ -90,7 +122,7 @@ songCursor = playlistCursor.cursor 0
 # returns a new cursor referencing the song object from the playlist at index 0
 ```
 
-  
+
 ```coffeescript
 # updating data
 
