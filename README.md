@@ -9,7 +9,7 @@ Cursor is designed w/ the following goals in mind:
 
 - to provide a **simple, familiar, human friendly api**
 
-- **not to be coupled to React** - data can easily be shared between react and
+- **not to be coupled** to react - data can easily be shared between react and
 other parts of an app, or between multiple top level react components in
 different parts of a page.
 
