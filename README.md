@@ -4,20 +4,22 @@ cursor
 Cursor provides a friendly api for reading and updating data using an immutable
 data structure.  It works great with, but does not require, React.js.
 
-Although some very immutable data libraries for javascript already exist, none
-provided the complete set of features I needed, so I ended up writing this one.
+Cursor is designed:
 
-Cursor:
-- provieds a simple, familiar, human friendly api
-- is not coupled to react - data can easily be shared between react and other
+- to provide a simple, familiar, human friendly api
+
+- not to be coupled to React - data can easily be shared between react and other
 parts of your app, or between multiple top level react components in different
 parts of a page.
-- is 'pure render' friendly - cursor objects are cached, making it easy to avoid
-unncessary rendering.
-- enforces immutability - cursor uses Object.freeze on immutablilty data to
-avoid hard bugs.
-- has built in undo / redo functionality w/ fine control over which changes are
-stored in the history.
+
+- to be 'pure render' friendly - cursor objects are cached, making it easy to
+avoid unncessary rendering.
+
+- to enforce immutability - cursor uses Object.freeze on immutible data to
+prevent unexpected changes.
+
+- to provide built in undo / redo functionality w/ fine control over which
+changes are stored in the history.
 
 
 
@@ -73,7 +75,6 @@ deep inside nested objects.
 
 an example
 ----------
-
 
 ```coffeescript
 # creating an immutable data structure
