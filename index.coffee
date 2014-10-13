@@ -1,21 +1,31 @@
-merge = require './deep_merge'
-freeze = require './deep_freeze'
-isArray = Array.isArray
+deepFreeze = require './util/deep_freeze'
+deepMerge = require './util/deep_merge'
+Cache = require './cache'
 
-module.exports = 
+
+module.exports =
 
   create: (inputData, onChange, historySize = 100) ->
-    data = freeze inputData
+    cache = new Cache
+    data = deepFreeze inputData
     batched = false
     undos = []
     redos = []
 
+
+    # declare cursor class w/ access to mutable reference to data in closure
     class Cursor
 
       constructor: (@path = []) ->
 
       cursor: (path = []) ->
-        new Cursor @path.concat path
+        fullPath = @path.concat path
+
+        return cached if (cached = cache.get fullPath)?
+
+        cursor = new Cursor fullPath
+        cache.store cursor
+        cursor
 
       get: (path = []) ->
         target = data
@@ -24,25 +34,38 @@ module.exports =
           return undefined unless target?
         target
 
-      set: (path, value, silent = false) ->
+      modifyAt: (path, modifier, silent) ->
         fullPath = @path.concat path
+
         newData = target = {}
         target[k] = v for k, v of data
 
         for key in fullPath.slice 0, -1
-          updated = if isArray target[key] then [] else {}
+          updated = if Array.isArray target[key] then [] else {}
           updated[k] = v for k, v of target[key]
           target[key] = updated
-          freeze target
+          Object.freeze target
           target = target[key]
 
-        freeze value if value instanceof Object
-        target[fullPath.slice -1] = value
+        modifier target, fullPath.slice -1
+        Object.freeze target
 
+        cache.clearPath fullPath
         update newData, silent
 
+      set: (path, value, silent = false) ->
+        @modifyAt path, (target, key) ->
+          target[key] = value
+        , silent
+
+      delete: (path, silent = false) ->
+        @modifyAt path, (target, key) ->
+          delete target[key]
+        , silent
+
       merge: (data, silent) ->
-        @set [], merge(@get(), freeze data), silent
+        cache.clearObject data
+        update deepMerge(@get(), deepFreeze data), silent
 
       bind: (path, pre) ->
         (v, silent) => @set path, (if pre then pre(v) else v), silent
@@ -52,6 +75,8 @@ module.exports =
         cb()
         batched = false
         update data, silent
+
+
 
     undo = ->
       return unless undos.length > 0
@@ -67,6 +92,8 @@ module.exports =
       data = redos.pop()
       onChange new Cursor(), undo, redo
 
+
+
     update = (newData, silent = false) ->
       unless silent or batched
         undos.push data
@@ -74,6 +101,7 @@ module.exports =
 
       data = newData
       onChange new Cursor(), undo, redo unless batched
+
 
     # perform callback one time to start
     onChange new Cursor(), undo, redo
