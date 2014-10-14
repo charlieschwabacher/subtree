@@ -8,9 +8,9 @@ structure.  It is designed w/ the following goals in mind:
 shared between react and other parts of an app, or between multiple top level
 react components in different parts of a page.
 
-- to be **'pure render' friendly** - cursor objects are cached, allowing them to
-work with react's pure render mixin and making it easy to avoid unncessary
-rendering.
+- to be **'pure render' friendly** - cursor objects are cached so that any two
+cursors pointing to the same object will be referentially equal, allowing them
+to just work with react's pure render mixin.
 
 - to provide a **simple, familiar, human friendly api** - working with immutable
 data shouldn't be hard - cursors expose get, set, and merge which work exactly
