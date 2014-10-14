@@ -1,8 +1,8 @@
 cursor
 ======
 
-Cursor is a library for reading from and updating an immutable data structure.
-It is designed w/ the following goals in mind:
+Cursor is a javascript library for reading from and updating an immutable data
+structure.  It is designed w/ the following goals in mind:
 
 - to **work well with**, but **avoid coupling to react.js** - data can easily be
 shared between react and other parts of an app, or between multiple top level
