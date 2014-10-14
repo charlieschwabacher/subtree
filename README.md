@@ -35,8 +35,8 @@ Cursor.create initialData, (rootCursor) ->
 
 The initialData object passed in to the cursor will be frozen.  The `onChange`
 callback will be called one time initially and on each change to the data,
-passing a root cursor object.  This callback is a great place to do something
-like render React components.
+passing a root cursor object.  If you are using Cursor with React, this 
+callback is a great place to render components.
 
 
 
