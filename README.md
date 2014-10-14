@@ -12,7 +12,9 @@ react components in different parts of a page.
 work with react's pure render mixin and making it easy to avoid unncessary
 rendering.
 
-- to provide a **simple, familiar, human friendly api**
+- to provide a **simple, familiar, human friendly api** - working with immutable
+data shouldn't be hard - cursors expose get, set, and merge which work exactly
+as you would exepect.
 
 - to **enforce immutability** - cursor uses Object.freeze on immutible data to
 prevent bugs caused by unexpected changes.
