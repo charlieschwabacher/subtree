@@ -8,8 +8,8 @@ It is designed w/ the following goals in mind:
 shared between react and other parts of an app, or between multiple top level
 react components in different parts of a page.
 
-- to be **'pure render' friendly** - cursor objects are cached, making it easy
-to avoid unncessary rendering.
+- to be **'pure render' friendly** - cursor objects are cached, allowing them to
+work with react's pure render mixin and avoid unncessary rendering.
 
 - to provide a **simple, familiar, human friendly api**
 
