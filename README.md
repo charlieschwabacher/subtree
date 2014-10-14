@@ -136,8 +136,8 @@ root.merge user: playcount: 7
 # sets user playcount to seven
 
 callback = root.bind ['user', 'name'], (v) -> v.toUpperCase()
-callback 'Sam Smith'
-# sets user name to 'SAM SMITH'
+callback 'Kenny G'
+# sets user name to 'KENNY G'
 
 root.batched ->
   songs = root.get ['playlist', 'songs']
