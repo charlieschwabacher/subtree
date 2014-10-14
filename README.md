@@ -9,7 +9,8 @@ shared between react and other parts of an app, or between multiple top level
 react components in different parts of a page.
 
 - to be **'pure render' friendly** - cursor objects are cached, allowing them to
-work with react's pure render mixin and avoid unncessary rendering.
+work with react's pure render mixin and making it easy to avoid unncessary
+rendering.
 
 - to provide a **simple, familiar, human friendly api**
 
