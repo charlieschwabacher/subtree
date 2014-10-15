@@ -112,6 +112,14 @@
 
   assert(root.cursor(['a', 'e']) === cursor2);
 
+  root.set('f', 11);
+
+  root.set([], {});
+
+  assert(root.get('a') === void 0);
+
+  assert(root.get('f') === void 0);
+
   console.log('all good');
 
 }).call(this);
