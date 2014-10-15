@@ -54,14 +54,20 @@ module.exports =
         update newData, silent
 
       set: (path, value, silent = false) ->
-        @modifyAt path, (target, key) ->
-          target[key] = value
-        , silent
+        if @path.length > 0 or path.length > 0
+          @modifyAt path, (target, key) ->
+            target[key] = value
+          , silent
+        else
+          update value, silent
 
       delete: (path, silent = false) ->
-        @modifyAt path, (target, key) ->
-          delete target[key]
-        , silent
+        if @path.length > 0 or path.length > 0
+          @modifyAt path, (target, key) ->
+            delete target[key]
+          , silent
+        else
+          update undefined, silent
 
       merge: (data, silent = false) ->
         cache.clearObject data

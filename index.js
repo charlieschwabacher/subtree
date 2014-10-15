@@ -86,21 +86,32 @@
           if (silent == null) {
             silent = false;
           }
-          return this.modifyAt(path, function(target, key) {
-            return target[key] = value;
-          }, silent);
+          if (this.path.length > 0 || path.length > 0) {
+            return this.modifyAt(path, function(target, key) {
+              return target[key] = value;
+            }, silent);
+          } else {
+            return update(value, silent);
+          }
         };
 
         Cursor.prototype["delete"] = function(path, silent) {
           if (silent == null) {
             silent = false;
           }
-          return this.modifyAt(path, function(target, key) {
-            return delete target[key];
-          }, silent);
+          if (this.path.length > 0 || path.length > 0) {
+            return this.modifyAt(path, function(target, key) {
+              return delete target[key];
+            }, silent);
+          } else {
+            return update(void 0, silent);
+          }
         };
 
         Cursor.prototype.merge = function(data, silent) {
+          if (silent == null) {
+            silent = false;
+          }
           cache.clearObject(data);
           return update(deepMerge(this.get(), deepFreeze(data)), silent);
         };
