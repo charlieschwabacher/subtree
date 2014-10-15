@@ -1,6 +1,6 @@
 {
   "name": "cursor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Immutable data structure with cursors",
   "main": "index.js",
   "author": "Charlie Schwabacher",
