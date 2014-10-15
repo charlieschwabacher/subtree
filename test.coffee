@@ -97,8 +97,6 @@ assert root.cursor(['a', 'e']) is cursor2
 # test clearing by setting root to empty object
 root.set 'f', 11
 root.set [], {}
-console.log "HERE"
-console.log root.get()
 assert root.get('a') is undefined
 assert root.get('f') is undefined
 
