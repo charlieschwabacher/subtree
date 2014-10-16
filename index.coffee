@@ -56,7 +56,7 @@ module.exports =
       set: (path, value, silent = false) ->
         if @path.length > 0 or path.length > 0
           @modifyAt path, (target, key) ->
-            target[key] = value
+            target[key] = deepFreeze value
           , silent
         else
           update value, silent
@@ -75,6 +75,9 @@ module.exports =
 
       bind: (path, pre) ->
         (v, silent) => @set path, (if pre then pre(v) else v), silent
+
+      has: (path) ->
+        @get(path)?
 
       batched: (cb, silent = false) ->
         batched = true

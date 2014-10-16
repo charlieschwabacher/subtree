@@ -101,6 +101,11 @@ assert root.get('a') is undefined
 assert root.get('f') is undefined
 
 
+# test creating empty cursor
+Cursor.create null, (cursor) -> root = cursor
+assert root.get() is null
+
+
 # indicate that all tests have passed
 
 console.log 'all good'

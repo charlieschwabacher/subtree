@@ -88,7 +88,7 @@
           }
           if (this.path.length > 0 || path.length > 0) {
             return this.modifyAt(path, function(target, key) {
-              return target[key] = value;
+              return target[key] = deepFreeze(value);
             }, silent);
           } else {
             return update(value, silent);
@@ -122,6 +122,10 @@
               return _this.set(path, (pre ? pre(v) : v), silent);
             };
           })(this);
+        };
+
+        Cursor.prototype.has = function(path) {
+          return this.get(path) != null;
         };
 
         Cursor.prototype.batched = function(cb, silent) {

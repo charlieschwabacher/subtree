@@ -120,6 +120,12 @@
 
   assert(root.get('f') === void 0);
 
+  Cursor.create(null, function(cursor) {
+    return root = cursor;
+  });
+
+  assert(root.get() === null);
+
   console.log('all good');
 
 }).call(this);

@@ -4,6 +4,9 @@
 
   module.exports = deepFreeze = function(o) {
     var prop, _i, _len, _ref;
+    if (!(o instanceof Object)) {
+      return o;
+    }
     _ref = Object.getOwnPropertyNames(o);
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       prop = _ref[_i];

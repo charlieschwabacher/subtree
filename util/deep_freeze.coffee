@@ -1,6 +1,9 @@
 # recursively call Object.freeze on an object and its properties
 
 module.exports = deepFreeze = (o) ->
+
+  return o unless o instanceof Object
+
   for prop in Object.getOwnPropertyNames o
     if (
       o.hasOwnProperty(prop) and
