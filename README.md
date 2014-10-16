@@ -35,7 +35,7 @@ Cursor.create initialData, (rootCursor) ->
 
 The initialData object passed in to the cursor will be frozen.  The `onChange`
 callback will be called one time initially and on each change to the data,
-passing a root cursor object.  If you are using Cursor with React, this 
+passing a root cursor object.  If you are using Cursor with React, this
 callback is a great place to render components.
 
 
@@ -55,6 +55,9 @@ unchanged.
 
 - `set(path, value)` - replaces the value at path with a new value.  Objects
 passed to set are frozen.
+
+- `has(path)` - returns true if there is a value at path that is not null or
+undefined
 
 - `merge(data)` - replaces the value at path with a new object created by deeply
 merging the current value and the provided argument
