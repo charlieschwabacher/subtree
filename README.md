@@ -69,7 +69,7 @@ optional `pre` argument is included, it will be composed with the setter to
 preproccess values.
 
 
-**Array only methods**: (these throw if the value at their path is not an array)
+**Array only methods** (these throw if the value at their path is not an array):
 
 - `splice(path, start, deleteCount, ...elements)` - similar to Array.splice,
 this inserts or deletes from the array at path.
