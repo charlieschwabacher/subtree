@@ -70,6 +70,7 @@ preproccess values.
 
 
 **Array only methods**:
+
 (these throw errors if the value at their path is not an array)
 
 - `splice(path, start, deleteCount, ...elements)` - similar to Array.splice,
