@@ -44,6 +44,8 @@ using cursors
 Cursor objects store a path through the root data object, and expose methods to
 read or update data at their path or below it.
 
+**Cursor API**:
+
 - `cursor(path)` - creates and returns a new subcursor appending the path
 argument to the cursor's current path. References to cursors are cached so that
 two cursors w/ identical path will be referentially equal as long as thir
@@ -67,7 +69,7 @@ optional `pre` argument is included, it will be composed with the setter to
 preproccess values.
 
 
-Array only methods: (these throw if the value at their path is not an array)
+**Array only methods**: (these throw if the value at their path is not an array)
 
 - `splice(path, start, deleteCount, ...elements)` - similar to Array.splice,
 this inserts or deletes from the array at path.
