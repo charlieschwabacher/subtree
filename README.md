@@ -62,25 +62,25 @@ undefined
 - `merge(data)` - replaces the value at path with a new object created by deeply
 merging the current value and the provided argument
 
-- `splice(path, start, deleteCount, ...elements)` - similar to Array.splice,
-this inserts or deletes from an array at path.  It throws an error if the value
-at path is not an array.
-
-- `push(path, value)` - adds a value to the end of the array at path, throws an
-error if the value at path is not an array.
-
-- `pop(path)` - removes the value from the end of the array at path, returns it,
-and throws an error if the value at path is not an array.
-
-- `unshift(path, value)` - adds a value to the beginning of the array at path,
-throws an error if the value at path is not an array
-
-- `shift(path)` - removes and returns the value from the beginning of the array
-at path, throws an error if the value at path is not an array
-
 - `bind(path[, pre])` - returns a setter function for the provided path.  If the
 optional `pre` argument is included, it will be composed with the setter to
 preproccess values.
+
+
+Array only methods: (these throw if the value at their path is not an array)
+
+- `splice(path, start, deleteCount, ...elements)` - similar to Array.splice,
+this inserts or deletes from the array at path.
+
+- `push(path, value)` - adds a value to the end of the array at path.
+
+- `pop(path)` - removes the value from the end of the array at path, and returns
+it.
+
+- `unshift(path, value)` - adds a value to the beginning of the array at path.
+
+- `shift(path)` - removes and returns the value from the beginning of the array
+at path.
 
 
 
