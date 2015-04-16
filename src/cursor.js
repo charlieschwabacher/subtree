@@ -3,16 +3,11 @@ const deepMerge = require('./deep_merge')
 const CursorCache = require('./cursor_cache')
 
 
-
-let Cursor
-
-
-
 module.exports = {
 
   // make a cursor superclass accessible for type checking
 
-  Cursor: (Cursor = class {}),
+  Cursor: class {},
 
 
   create: function(inputData, onChange) {
