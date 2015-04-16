@@ -123,10 +123,9 @@ initialData = {
 Cursor.create(initialData, function(root) {
   React.render(<Playlist data={root.cursor('playlist')}/>, document.body)
 })
-```
 
 
-```javascript
+
 // reading data
 
 root.get()
@@ -146,10 +145,9 @@ playlistCursor.get('name')
 
 songCursor = playlistCursor.cursor(0)
 // returns a new cursor referencing the song object from the playlist at index 0
-```
 
 
-```javascript
+
 // updating data
 
 root.get('user').playcount = 6
