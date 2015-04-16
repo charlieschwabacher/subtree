@@ -180,6 +180,10 @@ module.exports = {
         return set(fullPath, value)
       }
 
+      has(path) {
+        return this.get(path) != null
+      }
+
       delete(path = []) {
         const fullPath = this.path.concat(path)
         recordChange('delete', [fullPath])
@@ -218,10 +222,6 @@ module.exports = {
         return (v) => {
           this.set(path, pre ? pre(v) : v)
         }
-      }
-
-      has(path) {
-        return this.get(path) != null
       }
 
     }
