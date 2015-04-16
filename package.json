@@ -1,16 +1,23 @@
 {
   "name": "cursor",
-  "version": "1.0.2",
-  "description": "Immutable data structure with cursors",
+  "version": "0.0.0",
+  "description": "immutable data structure with cursors",
   "main": "index.js",
   "author": "Charlie Schwabacher",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/charlieschwabacher/cursor.git"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha",
+    "build": "browserify ./src/cursor.js -t babelify --outfile ./index.js"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel": "^5.1.10",
+    "babelify": "^6.0.2",
+    "browserify": "^9.0.8",
+    "mocha": "^2.2.4"
+  }
 }
