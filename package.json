@@ -1,6 +1,6 @@
 {
   "name": "subtree",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "immutable data structure with cursors",
   "keywords": ["cursor", "subtree"],
   "license": "MIT",
