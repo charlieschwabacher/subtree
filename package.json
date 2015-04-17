@@ -1,8 +1,8 @@
 {
-  "name": "cursor",
+  "name": "subtree",
   "version": "0.0.0",
   "description": "immutable data structure with cursors",
-  "keywords": ["cursor"],
+  "keywords": ["cursor", "subtree"],
   "license": "MIT",
   "author": "Charlie Schwabacher: <coschwabacher@gmail.com>",
   "repository": {

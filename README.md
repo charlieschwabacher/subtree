@@ -1,8 +1,8 @@
-cursor
-======
+Subtree
+=======
 
-Cursor is a javascript library for reading from and updating an immutable data
-structure.  It is designed w/ the following goals in mind:
+Subtree is a javascript cursor library for reading from and updating an
+immutable data structure.  It is designed w/ the following goals in mind:
 
 
 - to provide a **simple, familiar, human friendly api** - working with immutable
