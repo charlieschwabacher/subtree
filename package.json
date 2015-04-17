@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/charlieschwabacher/cursor/issues"
   },
-  "main": "lib/cursor.js",
+  "main": "lib/subtree.js",
   "files": [
     "lib/"
   ],
