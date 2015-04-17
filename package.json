@@ -14,7 +14,7 @@
   },
   "main": "lib/cursor.js",
   "files": [
-    "lib"
+    "lib/"
   ],
   "scripts": {
     "test": "mocha",
