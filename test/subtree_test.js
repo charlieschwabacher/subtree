@@ -1,9 +1,9 @@
 const assert = require('assert')
-const Cursor = require('../src/cursor')
+const Subtree = require('../src/subtree')
 
 
 
-describe('Cursor', () => {
+describe('Subtree', () => {
 
   const initialData = {
     a: {
@@ -21,17 +21,17 @@ describe('Cursor', () => {
 
 
   beforeEach(() => {
-    handle = Cursor.create(initialData, (_root) => { root = _root })
+    handle = Subtree.create(initialData, (_root) => { root = _root })
   })
 
 
   it('should inherit(from an exposed class', () => {
-    assert(root instanceof Cursor.Cursor)
+    assert(root instanceof Subtree.Cursor)
   })
 
   it('should trigger its callback immediately', () => {
     let count = 0
-    Cursor.create({}, () => { count += 1 })
+    Subtree.create({}, () => { count += 1 })
     assert.equal(count, 1)
   })
 
@@ -39,7 +39,7 @@ describe('Cursor', () => {
     let root = null
     let count = 0
 
-    Cursor.create({}, (_root) => {
+    Subtree.create({}, (_root) => {
       count += 1
       root = _root
     })
@@ -132,6 +132,11 @@ describe('Cursor', () => {
       assert.deepEqual(root.get(['a', 'e']), [1, 2, 3, 4])
     })
 
+    it('should accept a single argument', () => {
+      root.cursor(['a', 'e']).push(4)
+      assert.deepEqual(root.get(['a', 'e']), [1, 2, 3, 4])
+    })
+
     it('should throw an error if the target is not an array', () => {
       assert.throws(() => root.push(['a', 'b'], 4))
     })
@@ -150,6 +155,12 @@ describe('Cursor', () => {
       assert.deepEqual(root.get(['a', 'e']), [1, 2])
     })
 
+    it('should work without arguments', () => {
+      const val = root.cursor(['a', 'e']).pop()
+      assert.equal(val, 3)
+      assert.deepEqual(root.get(['a', 'e']), [1, 2])
+    })
+
     it('should throw an error if the target is not an array', () => {
       assert.throws(() => root.pop(['a', 'b']))
     })
@@ -164,6 +175,11 @@ describe('Cursor', () => {
   describe('#unshift', () => {
     it('should prepend a value to the beginning of an array', () => {
       root.unshift(['a', 'e'], 0)
+      assert.deepEqual(root.get(['a', 'e']), [0, 1, 2, 3])
+    })
+
+    it('should accept a single argument', () => {
+      root.cursor(['a', 'e']).unshift(0)
       assert.deepEqual(root.get(['a', 'e']), [0, 1, 2, 3])
     })
 
@@ -187,6 +203,12 @@ describe('Cursor', () => {
   describe('#shift', () => {
     it('should remove a value from the beginning of an array', () => {
       const val = root.shift(['a', 'e'])
+      assert.equal(val, 1)
+      assert.deepEqual(root.get(['a', 'e']), [2, 3])
+    })
+
+    it('should work without arguments', () => {
+      const val = root.cursor(['a', 'e']).shift()
       assert.equal(val, 1)
       assert.deepEqual(root.get(['a', 'e']), [2, 3])
     })
@@ -330,8 +352,8 @@ describe('Cursor', () => {
       let root1 = null
       let root2 = null
 
-      Cursor.create({a: 1}, (_root) => { root1 = _root })
-      Cursor.create({a: 2}, (_root) => { root2 = _root })
+      Subtree.create({a: 1}, (_root) => { root1 = _root })
+      Subtree.create({a: 2}, (_root) => { root2 = _root })
 
       assert.equal(root1.get('a'), 1)
       assert.equal(root2.get('a'), 2)
@@ -345,7 +367,7 @@ describe('Cursor', () => {
 
   describe('creating an empty cursor', () => {
     it('should create a cursor with null root node', () => {
-      Cursor.create(null, (_root) => { root = _root })
+      Subtree.create(null, (_root) => { root = _root })
       assert.equal(root.get(), null)
     })
   })

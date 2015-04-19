@@ -198,22 +198,37 @@ module.exports = {
       }
 
       push(path, value) {
+        if (arguments.length === 1) {
+          value = path
+          path = []
+        }
+
         return this.splice(path, Infinity, 0, value)
       }
 
-      pop(path) {
+      pop(path = []) {
         return this.splice(path, -1, 1)[0]
       }
 
       unshift(path, value) {
+        if (arguments.length === 1) {
+          value = path
+          path = []
+        }
+
         return this.splice(path, 0, 0, value)
       }
 
-      shift(path) {
+      shift(path = []) {
         return this.splice(path, 0, 1)[0]
       }
 
       bind(path, pre) {
+        if (arguments.length === 1) {
+          path = []
+          pre = path
+        }
+
         return (v) => {
           this.set(path, pre ? pre(v) : v)
         }
