@@ -137,7 +137,7 @@ module.exports = {
       } else {
         const updated = data.slice(0)
         const result = updated.splice(start, deleteCount, ...elements)
-        data = deepFreeze(updated)
+        update(deepFreeze(updated))
         return result
       }
     }
@@ -210,7 +210,7 @@ module.exports = {
           path = []
         }
 
-        return this.splice(path, Infinity, 0, value)
+        return this.splice(path, Number.MAX_SAFE_INTEGER, 0, value)
       }
 
       pop(path = []) {

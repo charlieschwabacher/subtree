@@ -2,7 +2,7 @@
 
 module.exports = function deepFreeze(object) {
 
-  if (!object instanceof Object) return object
+  if (!(object instanceof Object)) return object
 
   for (let key in object) {
     if (!object.hasOwnProperty(key)) continue
