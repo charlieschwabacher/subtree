@@ -44,6 +44,8 @@ describe('Subtree', () => {
       root = _root
     })
 
+    assert.equal(count, 1)
+
     root.set('a', 1)
     root.set('b', 2)
     root.set('c', 3)
@@ -56,9 +58,21 @@ describe('Subtree', () => {
 
   it('should work with an array as root node', () => {
     let root = null
-    Subtree.create([], (_root) => {root = _root})
+    let count = 0
+
+    Subtree.create([], (_root) => {
+      count += 1
+      root = _root
+    })
+
+    assert.equal(count, 1)
+
     root.push(1)
     assert.deepEqual(root.get(), [1])
+
+    setTimeout(() => {
+      assert.equal(count, 2)
+    })
   })
 
   describe('#get', () => {
