@@ -2,7 +2,10 @@
   "name": "subtree",
   "version": "0.0.5",
   "description": "immutable data structure with cursors",
-  "keywords": ["cursor", "subtree"],
+  "keywords": [
+    "cursor",
+    "subtree"
+  ],
   "license": "MIT",
   "author": "Charlie Schwabacher: <coschwabacher@gmail.com>",
   "repository": {
@@ -18,11 +21,13 @@
   ],
   "scripts": {
     "test": "mocha",
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "watch": "fsmonitor -d src -s '+*.js' npm run build"
   },
   "dependencies": {},
   "devDependencies": {
     "babel": "^5.1.10",
+    "fsmonitor": "^0.2.4",
     "mocha": "^2.2.4"
   }
 }
