@@ -125,14 +125,21 @@ module.exports = {
     const splice = (fullPath, start, deleteCount, ...elements) => {
       cache.spliceArray(fullPath, start, deleteCount, elements.length)
 
-      return modifyAt(fullPath, (target, key) => {
-        const arr = target[key]
-        if (!Array.isArray(arr)) throw new Error('can\'t splice a non array')
-        const updated = arr.slice(0)
+      if (fullPath.length > 0) {
+        return modifyAt(fullPath, (target, key) => {
+          const arr = target[key]
+          if (!Array.isArray(arr)) throw new Error('can\'t splice a non array')
+          const updated = arr.slice(0)
+          const result = updated.splice(start, deleteCount, ...elements)
+          target[key] = deepFreeze(updated)
+          return result
+        })
+      } else {
+        const updated = data.slice(0)
         const result = updated.splice(start, deleteCount, ...elements)
-        target[key] = deepFreeze(updated)
+        data = deepFreeze(updated)
         return result
-      })
+      }
     }
 
 

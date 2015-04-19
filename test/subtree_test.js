@@ -54,6 +54,12 @@ describe('Subtree', () => {
     })
   })
 
+  it('should work with an array as root node', () => {
+    let root = null
+    Subtree.create([], (_root) => {root = _root})
+    root.push(1)
+    assert.deepEqual(root.get(), [1])
+  })
 
   describe('#get', () => {
     it('should preserve identity of data', () => {

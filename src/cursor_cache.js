@@ -106,11 +106,11 @@ module.exports = class CursorCache {
 
   constructor(data) {
     this.data = data
-    this.root = new Map
+    this.root = Array.isArray(data()) ? [] : new Map
   }
 
   reset() {
-    this.root = new Map
+    this.root = Array.isArray(this.data()) ? [] : new Map
   }
 
   get(path) {
