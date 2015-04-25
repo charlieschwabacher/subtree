@@ -1,0 +1,5 @@
+todo:
+- add map / reduce / forEach to arrays (and objects?)
+- allow array methods to work on strings
+- throw an error if deepMerge is called on an array or other non object
+- add methods to numbers like increment, multiply, etc..?
