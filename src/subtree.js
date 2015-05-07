@@ -231,11 +231,6 @@ module.exports = {
       }
 
       bind(path, pre) {
-        if (arguments.length === 1) {
-          path = []
-          pre = path
-        }
-
         return (v) => {
           this.set(path, pre ? pre(v) : v)
         }
