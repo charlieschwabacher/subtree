@@ -73,7 +73,8 @@ preproccess values.
 (these will throw errors if the value at their path is not an array)
 
 - `splice(path, start, deleteCount, ...elements)` - similar to Array.splice,
-this inserts or deletes from the array at path.
+this inserts or deletes from the array at path.  Returns an array of the removed
+items.
 
 - `push(path, value)` - adds a value to the end of the array at path.
 
