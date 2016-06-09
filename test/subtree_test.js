@@ -25,7 +25,7 @@ describe('Subtree', () => {
   })
 
 
-  it('should inherit(from an exposed class', () => {
+  it('should inherit from an exposed class', () => {
     assert(root instanceof Subtree.Cursor)
   })
 
